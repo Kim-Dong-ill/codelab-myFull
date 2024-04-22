@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./assets/css/tStyle.scss";
-import { Routes, Route, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -12,6 +12,7 @@ import CompanyPage from "./pages/CompanyPage/CompanyPage";
 import NotAuthRouter from "./components/NotAuthRouter";
 import ProtectRouter from "./components/ProtectRouter";
 import BasicPage from "./pages/BasicPage/BasicPage";
+import MainPage from "./layout/Main/MainPage";
 
 function Layout() {
   return (
@@ -19,6 +20,7 @@ function Layout() {
       <Navbar />
       <main>
         <Outlet />
+        {/* 하단의 Route path="/"안에 있는 Route를 누르면 보이는 element가 Outlet에 보인다. */}
       </main>
       <FooterPage></FooterPage>
     </>
@@ -42,6 +44,8 @@ function App() {
       {pathname}
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
+          {/* 첫페이지를 보여주려면 index라고 한다. */}
           <Route element={<NotAuthRouter isAuth={isAuth} />}>
             {/* 로그인 했을때 여기를 통해서 로그인,회원가입 못누름 */}
             <Route path="/login" element={<LoginPage />}></Route>
