@@ -5,6 +5,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRouter = require("./routers/userRouter");
+const { blogRouter } = require("./routers/blogRouter");
+const { getFaker } = require("../faker");
 
 dotenv.config();
 app.use(express.json());
@@ -18,8 +20,13 @@ const server = async () => {
 
     app.use("/user", userRouter);
 
-    app.listen(4000, function () {
+    app.use("/blog", blogRouter);
+
+    app.listen(4000, async function () {
       console.log("server on port 4000");
+
+      // 주석 필수!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // await getFaker(10, 2);
     });
   } catch (error) {
     console.log("연결이 안됐네요!!!!!");

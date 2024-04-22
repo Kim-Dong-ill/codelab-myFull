@@ -31,13 +31,13 @@ userRouter.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(400).send({ error: "이메일을 확인해주세요" });
+      return res.status(400).send({ message: "이메일 확인" });
     }
 
     const isMatch = await compare(req.body.password, user.password);
 
     if (!isMatch) {
-      return res.status(400).send({ error: "비밀번호 확인해주세요" });
+      return res.status(400).send({ message: "비밀번호 확인" });
     }
 
     const payload = {
@@ -58,8 +58,23 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.get("/auth", auth, async (req, res) => {
   try {
-    console.log("-----------------------");
-    console.log(req.user);
+    const user = {
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name,
+      role: req.user.role,
+      image: req.user.image,
+    };
+    return res.status(200).send({ user });
+  } catch (error) {
+    return res.status(500).send({ error: error.message });
+  }
+});
+
+userRouter.post("/logout", auth, async (req, res) => {
+  try {
+    console.log("로그아웃 axio 연결 back 진입");
+    return res.status(200).send({ message: "로그아웃 되셨습니다." });
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }

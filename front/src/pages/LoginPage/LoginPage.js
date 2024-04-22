@@ -23,6 +23,8 @@ function LoginPage() {
     dispatch(loginUser(body)); //dispatch 안에 함수가 있으면 thunk사용한다는 뜻
     //thunk는 axios를 비동기로 진행할때 사용한다.
     //loginUser에서 axios사용할때 body필요하기때문에 넣어서 보내준다.
+    //dispatch는 찔러주는 역할이다. 찔러주면 userSlice에 acion으로 값이 전달된다.
+    //비동기라서 async 붙여준다.
     reset();
   }
 
