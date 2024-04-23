@@ -11,8 +11,8 @@ import FooterPage from "./layout/footer/FooterPage";
 import CompanyPage from "./pages/CompanyPage/CompanyPage";
 import NotAuthRouter from "./components/NotAuthRouter";
 import ProtectRouter from "./components/ProtectRouter";
-import BasicPage from "./pages/BasicPage/BasicPage";
 import MainPage from "./layout/Main/MainPage";
+import BlogListPage from "./pages/BlogPage/BlogListPage";
 
 function Layout() {
   return (
@@ -53,8 +53,8 @@ function App() {
           </Route>
           <Route element={<ProtectRouter isAuth={isAuth} />}>
             <Route path="/company" element={<CompanyPage />}></Route>
+            <Route path="/blog" element={<BlogListPage />}></Route>
           </Route>
-          <Route path="/basic" element={<BasicPage></BasicPage>}></Route>
         </Route>
       </Routes>
     </>
