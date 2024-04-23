@@ -20,7 +20,7 @@ function BlogListPage() {
     const fetchData = async (page) => {
       try {
         const res = await axiosInstance.get("/blog", {
-          params: { page },
+          params: { page }, //page=1
         });
         console.log(res.data);
         setBlogs(res.data.blogs);
